@@ -72,11 +72,11 @@ header.scrolled nav ul li a {
   position: relative;
   min-height: 100vh;
   display: flex;
-  flex-direction: row; /* image left, text right */
-  justify-content: center; /* horizontally center */
-  align-items: center; /* vertically center content */
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   gap: 80px;
-  padding: 20px 60px 60px; /* mas baba yung top padding */
+  padding: 20px 60px 60px;
   color: white;
   text-align: left;
 }
@@ -85,7 +85,7 @@ header.scrolled nav ul li a {
   flex: 1;
   max-width: 500px;
   z-index: 1;
-  margin-top: 0; /* tanggalin para mas centered */
+  margin-top: 0;
 }
 
 .hero-text h1 {
@@ -100,6 +100,7 @@ header.scrolled nav ul li a {
   text-shadow: 2px 2px 15px rgba(255,204,0,0.6);
 }
 
+
 /* Gradient animation */
 @keyframes gradientMove {
   0% { background-position: 0% 50%; }
@@ -107,11 +108,13 @@ header.scrolled nav ul li a {
   100% { background-position: 0% 50%; }
 }
 
+
 /* Floating animation */
 @keyframes floatText {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); } /* adjust para mas taas/baba */
+  50% { transform: translateY(-15px); }
 }
+
 
 .hero-text h2 {
   font-size: 32px;
@@ -120,19 +123,22 @@ header.scrolled nav ul li a {
   color: #fff;
 }
 
+
 .hero-text h3 {
   font-size: 18px;
   margin-bottom: 25px;
   color: #ddd;
 }
 
+
 /* Image container */
 .hero-img {
   flex: 1;
   display: flex;
   justify-content: center;
-  margin-top: 0; /* tanggalin para aligned sa text */
+  margin-top: 0;
 }
+
 
 .hero-img img {
   width: 400px;
@@ -144,26 +150,65 @@ header.scrolled nav ul li a {
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
+
 .hero-img img:hover {
   transform: scale(1.05);
   box-shadow: 0 15px 40px rgba(255, 255, 255, 0.6);
 }
 
+
 /* Social Icons */
 .hero .social-links {
   margin-top: 25px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
+
 
 .hero .social-links a i {
   font-size: 32px;
   color: #ffffff;
-  margin-right: 18px;
   transition: color 0.3s, transform 0.3s;
 }
+
 
 .hero .social-links a i:hover {
   transform: scale(1.2);
   color: #ffcc00;
+}
+
+
+/* Resume Button */
+.resume-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 14px;
+  border: 2px solid #ffcc00;
+  background: transparent;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: 0.3s ease;
+  margin-left: 5px;
+  gap: 5px;
+}
+
+/* Smaller Download Icon */
+.resume-btn i {
+  font-size: 12px;
+  margin-left: 2px;
+}
+
+
+.resume-btn:hover {
+  background: #ffcc00;
+  color: #000;
+  transform: translateY(-2px);
 }
 
 /* ===== Responsive (optional, remove kung desktop lang) ===== */
