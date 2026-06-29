@@ -35,18 +35,20 @@
       header.classList.toggle("scrolled", window.scrollY > 50);
     });
 
-    const toggleBtn = document.createElement("button");
-    toggleBtn.className = "mobile-menu-toggle";
-    toggleBtn.setAttribute("aria-label", "Toggle navigation");
-    toggleBtn.innerHTML = "<span></span><span></span><span></span>";
-    header.appendChild(toggleBtn);
+    // Sinisiguro nitong mapipili lahat ng hamburger buttons (maging sa desktop o bagong mobile view)
+    const toggleBtns = document.querySelectorAll(".mobile-menu-toggle");
 
-    toggleBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      if (navElement) {
-        navElement.classList.toggle("active");
-      }
-    });
+    toggleBtns.forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (navElement) {
+          navElement.classList.toggle("active");
+          console.log("Hamburger menu clicked! Active state:", navElement.classList.contains("active")); 
+        } else {
+          console.error("Error: Hindi mahanap ang 'header nav' element sa iyong HTML.");
+        }
+      });
+    }); 
 
     if (navElement) {
       const mobileLinks = navElement.querySelectorAll("ul.nav-links li a");
@@ -199,8 +201,8 @@
     card.style.cssText += `
       opacity: 0;
       transform: perspective(800px) rotateY(${fromLeft ? "-25deg" : "25deg"}) translateY(60px) scale(0.92);
-      transition: opacity 0.75s cubic-bezier(0.22,1,0.36,1) ${i * 110}ms,
-                  transform 0.75s cubic-bezier(0.22,1,0.36,1) ${i * 110}ms;
+      transition: opacity 0.5s cubic-bezier(0.22,1,0.36,1) ${i * 80}ms,
+                  transform 0.5s cubic-bezier(0.22,1,0.36,1) ${i * 80}ms;
       will-change: transform, opacity;
     `;
   });
@@ -278,7 +280,7 @@
     node.style.cssText += `
       opacity: 0;
       transform: translateX(-40px);
-      transition: opacity 0.6s ease ${i * 100}ms, transform 0.6s cubic-bezier(0.34,1.56,0.64,1) ${i * 100}ms;
+      transition: opacity 0.45s ease ${i * 70}ms, transform 0.45s cubic-bezier(0.34,1.56,0.64,1) ${i * 70}ms;
     `;
   });
 
@@ -298,7 +300,7 @@
       opacity: 0;
       transform: scale(0.85);
       filter: blur(6px);
-      transition: opacity 0.6s ease ${i * 80}ms, transform 0.6s cubic-bezier(0.22,1,0.36,1) ${i * 80}ms, filter 0.6s ease ${i * 80}ms;
+      transition: opacity 0.45s ease ${i * 50}ms, transform 0.45s cubic-bezier(0.22,1,0.36,1) ${i * 50}ms, filter 0.45s ease ${i * 50}ms;
     `;
   });
 
@@ -318,7 +320,7 @@
     card.style.cssText += `
       opacity: 0;
       transform: perspective(600px) rotateX(30deg) translateY(40px);
-      transition: opacity 0.7s ease ${i * 150}ms, transform 0.7s cubic-bezier(0.22,1,0.36,1) ${i * 150}ms;
+      transition: opacity 0.5s ease ${i * 100}ms, transform 0.5s cubic-bezier(0.22,1,0.36,1) ${i * 100}ms;
       will-change: transform, opacity;
     `;
   });
@@ -339,8 +341,8 @@
   if (leftCol) {
     leftCol.style.cssText += `
       opacity: 0;
-      transform: translateX(-60px);
-      transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1);
+      transform: translateX(-50px);
+      transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1);
     `;
     createObserver((entries) => {
       entries.forEach(entry => {
@@ -355,8 +357,8 @@
   if (rightCol) {
     rightCol.style.cssText += `
       opacity: 0;
-      transform: translateX(60px);
-      transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1) 0.15s, transform 0.8s cubic-bezier(0.22,1,0.36,1) 0.15s;
+      transform: translateX(50px);
+      transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1) 0.1s, transform 0.6s cubic-bezier(0.22,1,0.36,1) 0.1s;
     `;
     createObserver((entries) => {
       entries.forEach(entry => {

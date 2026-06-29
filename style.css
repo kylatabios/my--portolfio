@@ -192,23 +192,38 @@ header.scrolled {
   flex: 1;
   display: flex;
   justify-content: center;
+  perspective: 1000px; /* Nagbibigay ng 3D space para sa flip effect */
   margin-top: 0;
 }
 
-.hero-img img {
+.desktop-image-glass-frame {
   width: 400px;
   height: 400px;
-  object-fit: cover;
-  object-position: top;
-  border-radius: 50%;
-  border: 4px solid #fff;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 35px; /* Rounded square shape */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+  transform-style: preserve-3d;
+  animation: autoFloat3D 10s ease-in-out infinite; 
+  transition: box-shadow 0.4s ease;
 }
 
-.hero-img img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 15px 40px rgba(255, 255, 255, 0.6);
+.desktop-image-glass-frame:hover {
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+}
+
+.hero-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 28px; /* Inner radius */
+  border: none;
+  box-shadow: none;
+  transform: translateZ(20px); 
 }
 
 .hero .social-links {
@@ -1469,7 +1484,6 @@ footer p { margin: 0; color: white; }
 }
 
 @media (max-width: 480px) {
-  /* ✅ FIX: I-adjust ang padding ng contact form sa maliliit na screen */
   .contact-container { padding: 30px 20px; }
 }
 
@@ -1480,6 +1494,7 @@ footer p { margin: 0; color: white; }
 }
 
 .mobile-menu-toggle { display: none; }
+.mobile-menu-toggle { display: none; } 
 
 @media (max-width: 768px) {
   .mobile-menu-toggle {
@@ -1557,6 +1572,7 @@ footer p { margin: 0; color: white; }
     z-index: 1001;
     display: none;
   }
+  header { z-index: 1002; } 
 
   header nav.active {
     display: block !important;
@@ -1632,7 +1648,249 @@ footer p { margin: 0; color: white; }
   .social-links {
     display: flex !important;
     justify-content: center !important;
-    gap: 24px !important;
+    gap: 24px !important; /* This is for the old hero view */
     margin-top: 15px !important;
   }
+}
+
+
+
+/* --- Viewport Control --- */
+@media (min-width: 769px) {
+  .desktop-hero-view { display: flex !important; } /* Use flex to match original layout */
+  .desktop-hero-view {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    width: 100%;
+  }
+  .mobile-hero-view { display: none !important; }
+}
+
+@media (max-width: 768px) {
+  .desktop-hero-view { display: none !important; }
+  .mobile-hero-view { 
+    display: flex !important; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-color: transparent; 
+    color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    gap: 25px; 
+    text-align: center;
+  }
+  
+  .hero {
+    padding: 0 !important;
+    padding-top: 70px !important; 
+    min-height: 100vh !important;
+  }
+}
+
+
+.mobile-hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px; 
+  margin-top: 0; 
+  flex-grow: 0; 
+  justify-content: center;
+  perspective: 1000px; 
+}
+
+/* Hamburger Menu Fix */
+@media (max-width: 768px) {
+  header nav.active + .mobile-menu-toggle span:nth-child(1) {
+    transform: translateY(9.5px) rotate(45deg);
+  }
+  header nav.active + .mobile-menu-toggle span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  header nav.active + .mobile-menu-toggle span:nth-child(3) {
+    transform: translateY(-9.5px) rotate(-45deg);
+  }
+}
+
+@keyframes autoFloat3D {
+  0% { transform: rotateY(-12deg) rotateX(6deg); }
+  50% { transform: rotateY(12deg) rotateX(-6deg); }
+  100% { transform: rotateY(-12deg) rotateX(6deg); }
+}
+
+.mobile-image-glass-frame {
+  width: 190px;
+  height: 190px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.08); /* Glass effect background */
+  border-radius: 35px; 
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+  margin-bottom: 15px;
+  transition: box-shadow 0.4s ease;
+  transform-style: preserve-3d; 
+  animation: autoFloat3D 10s ease-in-out infinite;
+}
+
+.mobile-image-glass-frame:hover {
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+}
+
+.mobile-profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 28px; 
+  border: none; 
+  transform: translateZ(20px); 
+}
+
+.mobile-hero-h1 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 2rem;
+  font-weight: 800; 
+  margin: 0;
+  /* Apply gradient and animation from original desktop h1 */
+  background: linear-gradient(135deg, #ffcc00, #ff9900, #ffcc00, #ff9900);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  animation: gradientMove 8s ease infinite, floatText 3s ease-in-out infinite; /* Added floatText animation */
+  text-shadow: 2px 2px 15px rgba(255,204,0,0.3);
+}
+
+.mobile-hero-titles {
+  font-family: system-ui, sans-serif;
+  font-size: 1rem;
+  color: #ddd; 
+  margin: -8px 0 0 0;
+}
+
+/* --- Desktop CTA Buttons --- */
+.hero-cta-buttons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+
+@media (min-width: 769px) {
+  /* Primary Button (View Projects) - Desktop */
+  .desktop-hero-view .cta-primary {
+    background: transparent;
+    color: #ffcc00;
+    border: 2px solid #ffcc00;
+    padding: 8px 22px; 
+    font-weight: 700;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.2);
+    margin-top: 0; 
+  }
+
+  .desktop-hero-view .cta-primary:hover {
+    background: #ffcc00;
+    color: #000;
+    box-shadow: 0 0 25px rgba(255, 204, 0, 0.5);
+  }
+
+  /* Secondary Button (Download Resume) - Desktop */
+  .desktop-hero-view .cta-secondary {
+    color: #ccc;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 3px;
+  }
+
+  .desktop-hero-view .cta-secondary:hover {
+    color: #fff;
+    border-bottom-color: #ffcc00;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .mobile-hero-view .cta-primary {
+    background: transparent;
+    color: #ffcc00;
+    border: 2px solid #ffcc00;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.2);
+    padding: 10px 28px; /* In-adjust para sa mobile */
+  }
+}
+
+
+.cta-primary {
+  display: inline-block;
+  background-color: #d4af37;
+  color: #111;
+  font-family: system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 12px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  margin-top: 12px;
+}
+
+.cta-primary:hover {
+  background-color: #cda235;
+  transform: translateY(-2px);
+}
+
+.cta-secondary {
+  color: #9ca3af;
+  font-family: system-ui, sans-serif;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.cta-secondary:hover {
+  color: #fff;
+}
+
+/* --- Mobile Social Links (moved from footer) --- */
+.mobile-social-links {
+  display: flex;
+  gap: 24px;
+  /* Removed margin-top as it's now in the footer */
+}
+
+.mobile-social-links a {
+  color: #9ca3af;
+  font-size: 1.5rem;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.mobile-social-links a:hover {
+  color: #d4af37;
+  transform: translateY(-3px);
+}
+
+/* --- Mobile Hero Footer --- */
+.mobile-hero-footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.mobile-copyright {
+  font-family: system-ui, sans-serif;
+  font-size: 0.75rem;
+  color: #555e6d;
+  margin: 0;
 }
