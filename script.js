@@ -35,7 +35,7 @@
       header.classList.toggle("scrolled", window.scrollY > 50);
     });
 
-    // Sinisiguro nitong mapipili lahat ng hamburger buttons (maging sa desktop o bagong mobile view)
+    
     const toggleBtns = document.querySelectorAll(".mobile-menu-toggle");
 
     toggleBtns.forEach(btn => {
@@ -129,11 +129,9 @@
   document.querySelectorAll(".cert-prev, .cert-next").forEach(btn => {
     btn.addEventListener("click", () => {
       const targetId = btn.getAttribute("data-target");
-      const container = targetId
-        ? document.getElementById(targetId)
-        : document.querySelector(".certificates");
+      const container = document.getElementById(targetId);
       if (!container) return;
-      const scrollAmount = 360;
+      const scrollAmount = 334; // Adjusted for card width (310px) + gap (24px)
       if (btn.classList.contains("cert-next")) {
         container.scrollBy({ left: scrollAmount, behavior: "smooth" });
       } else {

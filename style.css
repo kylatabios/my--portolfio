@@ -1,34 +1,35 @@
 body, html {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
 
 header {
   position: fixed;
-  top: 20px;
+  top: 1.25rem;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
-  max-width: 950px;
+  max-width: 59.375rem;
   background: rgba(0, 0, 0, 0.45); 
   backdrop-filter: blur(12px);   
   -webkit-backdrop-filter: blur(12px);
-  border-radius: 50px;           
+  border-radius: 3.125rem;
   border: 1px solid rgba(255, 255, 255, 0.1); 
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 24px;
+  padding: 0.625rem 1.5rem;
   z-index: 1000;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.2);
+  flex-wrap: wrap;
 }
 
 header .logo img {
-  height: 40px;
+  height: 2.5rem;
   width: auto;
   display: block;
   cursor: pointer;
@@ -38,7 +39,7 @@ header nav ul.nav-links {
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 0.375rem;
   margin: 0;
   padding: 0;
 }
@@ -47,9 +48,9 @@ header nav ul.nav-links li a {
   color: #fff !important;
   text-decoration: none;
   font-weight: bold;
-  font-size: 14px;
-  padding: 7px 13px;
-  border-radius: 20px;
+  font-size: 0.875rem;
+  padding: 0.4375rem 0.8125rem;
+  border-radius: 1.25rem;
   transition: all 0.3s ease;
   display: inline-block;
 }
@@ -65,7 +66,7 @@ header nav ul li.last-item a {
 
 header.scrolled {
   background: rgba(0, 0, 0, 0.75) !important;
-  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0.625rem 2rem rgba(0, 0, 0, 0.5);
   border-color: rgba(255, 255, 255, 0.15);
 }
 
@@ -76,10 +77,11 @@ header.scrolled {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 80px;
-  padding: 20px 60px 60px;
+  gap: 5rem;
+  padding: 6.25rem 3.75rem;
   color: white;
   text-align: left;
+  flex-wrap: wrap;
 }
 
 .hero-text {
@@ -153,15 +155,15 @@ header.scrolled {
 }
 
 .hero-text h1 {
-  font-size: 80px;
-  margin: 0 0 20px;
+  font-size: clamp(2.5rem, 5vw + 1rem, 5rem);
+  margin: 0 0 1.25rem;
   font-weight: 800;
   background: linear-gradient(135deg, #ffcc00, #ff9900, #ffcc00, #ff9900);
   background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: gradientMove 8s ease infinite, floatText 3s ease-in-out infinite;
-  text-shadow: 2px 2px 15px rgba(255,204,0,0.6);
+  text-shadow: 0.125rem 0.125rem 1rem rgba(255,204,0,0.6);
 }
 
 @keyframes gradientMove {
@@ -172,19 +174,19 @@ header.scrolled {
 
 @keyframes floatText {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
+  50% { transform: translateY(-0.9375rem); }
 }
 
 .hero-text h2 {
-  font-size: 32px;
-  margin-bottom: 15px;
+  font-size: 2rem;
+  margin-bottom: 1rem;
   font-weight: 500;
   color: #fff;
 }
 
 .hero-text h3 {
-  font-size: 18px;
-  margin-bottom: 20px;
+  font-size: 1.125rem;
+  margin-bottom: 1.25rem;
   color: #ddd;
 }
 
@@ -192,27 +194,35 @@ header.scrolled {
   flex: 1;
   display: flex;
   justify-content: center;
-  perspective: 1000px; /* Nagbibigay ng 3D space para sa flip effect */
+  perspective: 1000px;
   margin-top: 0;
 }
 
 .desktop-image-glass-frame {
-  width: 400px;
-  height: 400px;
+  max-width: 25rem;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   padding: 10px;
   background: rgba(255, 255, 255, 0.08);
-  border-radius: 35px; /* Rounded square shape */
+  border-radius: 35px;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
   transform-style: preserve-3d;
-  animation: autoFloat3D 10s ease-in-out infinite; 
-  transition: box-shadow 0.4s ease;
+  animation: autoFloat3D 10s ease-in-out infinite;
+  transition: box-shadow 0.4s ease, border-color 0.4s ease, transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .desktop-image-glass-frame:hover {
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.desktop-image-glass-frame:active {
+  transform: scale(0.97) rotateY(4deg) rotateX(-4deg);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 255, 255, 0.2);
+  transition-duration: 0.1s;
 }
 
 .hero-img img {
@@ -220,22 +230,22 @@ header.scrolled {
   height: 100%;
   object-fit: cover;
   object-position: top;
-  border-radius: 28px; /* Inner radius */
+  border-radius: 28px;
   border: none;
   box-shadow: none;
-  transform: translateZ(20px); 
+  transform: translateZ(20px);
 }
 
 .hero .social-links {
-  margin-top: 25px;
+  margin-top: 1.5625rem;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0.75rem;
   flex-wrap: wrap;
 }
 
 .hero .social-links a i {
-  font-size: 32px;
+  font-size: 2rem;
   color: #ffffff;
   transition: color 0.3s, transform 0.3s;
 }
@@ -322,7 +332,7 @@ header.scrolled {
   z-index: 1;
 }
 
-.light-section { background: transparent; color: #222; }
+.light-section { background: transparent; color: #fff; } /* Changed color to white for consistency */
 .dark-section { background: transparent; color: #fff; }
 
 .section-bg-video {
@@ -926,20 +936,25 @@ header.scrolled {
 .cert-prev,
 .cert-next {
   position: absolute;
-  top: 45%;
-  width: 50px; height: 50px;
+  top: 50%;
+  transform: translateY(-50%); /* Para laging nasa gitna vertically */
+  width: 44px; height: 44px; /* Pinaliit ng kaunti */
   border: none;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(30, 30, 30, 0.7); /* Ginawang mas subtle */
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: white;
-  font-size: 30px;
+  font-size: 16px; /* In-adjust para sa icon */
   cursor: pointer;
   z-index: 10;
   transition: 0.3s ease;
+  display: flex; /* Para ma-center ang icon */
+  align-items: center;
+  justify-content: center;
 }
 
-.cert-prev { left: -15px; }
-.cert-next { right: -15px; }
+.cert-prev { left: 10px; } /* Inilipat papasok */
+.cert-next { right: 10px; } /* Inilipat papasok */
 
 .cert-prev:hover,
 .cert-next:hover {
@@ -1400,13 +1415,36 @@ header.scrolled {
 .contact-form button:hover { background: #ff9900; }
 
 footer {
-  background: black;
+  background: #0d0d0d;
   text-align: center;
-  padding: 20px;
-  border-top: 2px solid #ffcc00;
+  padding: 30px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-footer p { margin: 0; color: white; }
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-socials a {
+  color: #888;
+  font-size: 1.3rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-socials a:hover {
+  color: #ffcc00;
+  transform: translateY(-3px);
+}
+
+footer p { margin: 0; color: #777; font-size: 0.85rem; }
 
 .reveal {
   opacity: 0;
@@ -1481,6 +1519,16 @@ footer p { margin: 0; color: white; }
   .cert-next { right: 5px; }
   .contact-form input,
   .contact-form textarea { max-width: 100%; }
+}
+
+/* Remove space between Projects and Why Work With Me on desktop */
+@media (min-width: 769px) {
+  #projects {
+    padding-bottom: 0;
+  }
+  #why-work-with-me {
+    padding-top: 50px; /* Add some space between the sections */
+  }
 }
 
 @media (max-width: 480px) {
@@ -1648,16 +1696,16 @@ footer p { margin: 0; color: white; }
   .social-links {
     display: flex !important;
     justify-content: center !important;
-    gap: 24px !important; /* This is for the old hero view */
+    gap: 24px !important;
     margin-top: 15px !important;
   }
 }
 
 
 
-/* --- Viewport Control --- */
+
 @media (min-width: 769px) {
-  .desktop-hero-view { display: flex !important; } /* Use flex to match original layout */
+  .desktop-hero-view { display: flex !important; }
   .desktop-hero-view {
     display: flex !important;
     flex-direction: row;
@@ -1682,13 +1730,13 @@ footer p { margin: 0; color: white; }
     color: #fff;
     padding: 20px;
     box-sizing: border-box;
-    gap: 25px; 
+    gap: 25px;
     text-align: center;
   }
   
   .hero {
     padding: 0 !important;
-    padding-top: 70px !important; 
+    padding-top: 70px !important;
     min-height: 100vh !important;
   }
 }
@@ -1698,14 +1746,14 @@ footer p { margin: 0; color: white; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px; 
-  margin-top: 0; 
-  flex-grow: 0; 
+  gap: 12px;
+  margin-top: 0;
+  flex-grow: 0;
   justify-content: center;
-  perspective: 1000px; 
+  perspective: 1000px;
 }
 
-/* Hamburger Menu Fix */
+
 @media (max-width: 768px) {
   header nav.active + .mobile-menu-toggle span:nth-child(1) {
     transform: translateY(9.5px) rotate(45deg);
@@ -1729,15 +1777,15 @@ footer p { margin: 0; color: white; }
   width: 190px;
   height: 190px;
   padding: 8px;
-  background: rgba(255, 255, 255, 0.08); /* Glass effect background */
-  border-radius: 35px; 
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 35px;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
   margin-bottom: 15px;
-  transition: box-shadow 0.4s ease, border-color 0.4s ease, animation-duration 0.5s ease;
-  transform-style: preserve-3d; 
+  transition: box-shadow 0.4s ease, border-color 0.4s ease, animation-duration 0.5s ease, transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-style: preserve-3d;
   animation: autoFloat3D 10s ease-in-out infinite;
 }
 
@@ -1747,38 +1795,44 @@ footer p { margin: 0; color: white; }
   animation-duration: 3s;
 }
 
+.mobile-image-glass-frame:active {
+  transform: scale(0.96) rotateY(5deg) rotateX(-5deg);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 255, 255, 0.2);
+  transition-duration: 0.1s;
+}
+
 .mobile-profile-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top;
-  border-radius: 28px; 
-  border: none; 
-  transform: translateZ(20px); 
+  border-radius: 28px;
+  border: none;
+  transform: translateZ(20px);
 }
 
 .mobile-hero-h1 {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 2rem;
-  font-weight: 800; 
+  font-weight: 800;
   margin: 0;
-  /* Apply gradient and animation from original desktop h1 */
+  
   background: linear-gradient(135deg, #ffcc00, #ff9900, #ffcc00, #ff9900);
   background-size: 400% 400%;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; 
-  animation: gradientMove 8s ease infinite, floatText 3s ease-in-out infinite; /* Added floatText animation */
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 8s ease infinite, floatText 3s ease-in-out infinite;
   text-shadow: 2px 2px 15px rgba(255,204,0,0.3);
 }
 
 .mobile-hero-titles {
   font-family: system-ui, sans-serif;
   font-size: 1rem;
-  color: #ddd; 
+  color: #ddd;
   margin: -8px 0 0 0;
 }
 
-/* --- Desktop CTA Buttons --- */
+
 .hero-cta-buttons {
   display: flex;
   align-items: center;
@@ -1789,15 +1843,15 @@ footer p { margin: 0; color: white; }
 
 
 @media (min-width: 769px) {
-  /* Primary Button (View Projects) - Desktop */
+  
   .desktop-hero-view .cta-primary {
     background: transparent;
     color: #ffcc00;
     border: 2px solid #ffcc00;
-    padding: 8px 22px; 
+    padding: 8px 22px;
     font-weight: 700;
     box-shadow: 0 0 15px rgba(255, 204, 0, 0.2);
-    margin-top: 0; 
+    margin-top: 0;
   }
 
   .desktop-hero-view .cta-primary:hover {
@@ -1806,7 +1860,7 @@ footer p { margin: 0; color: white; }
     box-shadow: 0 0 25px rgba(255, 204, 0, 0.5);
   }
 
-  /* Secondary Button (Download Resume) - Desktop */
+  
   .desktop-hero-view .cta-secondary {
     color: #ccc;
     text-decoration: none;
@@ -1827,7 +1881,7 @@ footer p { margin: 0; color: white; }
     color: #ffcc00;
     border: 2px solid #ffcc00;
     box-shadow: 0 0 15px rgba(255, 204, 0, 0.2);
-    padding: 10px 28px; /* In-adjust para sa mobile */
+    padding: 10px 28px;
   }
 }
 
@@ -1863,11 +1917,11 @@ footer p { margin: 0; color: white; }
   color: #fff;
 }
 
-/* --- Mobile Social Links (moved from footer) --- */
+
 .mobile-social-links {
   display: flex;
   gap: 24px;
-  /* Removed margin-top as it's now in the footer */
+  
 }
 
 .mobile-social-links a {
@@ -1881,7 +1935,7 @@ footer p { margin: 0; color: white; }
   transform: translateY(-3px);
 }
 
-/* --- Mobile Hero Footer --- */
+
 .mobile-hero-footer {
   width: 100%;
   display: flex;
