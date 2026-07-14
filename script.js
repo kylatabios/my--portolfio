@@ -126,6 +126,47 @@
     window.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
   }
 
+  // Video Modal Logic
+  const zoomableVideos = document.querySelectorAll("video[data-zoomable-video]");
+  if (zoomableVideos.length > 0) {
+    const videoModal = document.createElement("div");
+    videoModal.className = "img-modal"; // Re-use existing modal style
+    const videoContainer = document.createElement("div");
+    videoContainer.style.width = '80%';
+    videoContainer.style.maxWidth = '960px';
+    const closeBtn = document.createElement("span");
+    closeBtn.className = "close";
+    closeBtn.innerHTML = "&times;";
+
+    videoModal.appendChild(closeBtn);
+    videoModal.appendChild(videoContainer);
+    document.body.appendChild(videoModal);
+
+    zoomableVideos.forEach((vid) => {
+      vid.style.cursor = "zoom-in";
+      vid.addEventListener("click", () => {
+        // Clone the video to not affect the small one
+        const videoClone = vid.cloneNode(true);
+        videoClone.style.width = '100%';
+        videoClone.style.height = 'auto';
+        videoClone.style.borderRadius = '12px';
+        videoClone.controls = true; // Show controls in modal
+        videoClone.muted = false;   // Unmute in modal
+        videoClone.loop = false;    // Don't loop in modal
+        
+        videoContainer.innerHTML = ''; // Clear previous video
+        videoContainer.appendChild(videoClone);
+        videoModal.classList.add("show");
+        videoClone.play(); // Play when modal opens
+      });
+    });
+
+    const closeVideoModal = () => { videoModal.classList.remove("show"); videoContainer.innerHTML = ''; };
+    closeBtn.addEventListener("click", closeVideoModal);
+    videoModal.addEventListener("click", (e) => { if (e.target === videoModal) closeVideoModal(); });
+    window.addEventListener("keydown", (e) => { if (e.key === "Escape" && videoModal.classList.contains('show')) closeVideoModal(); });
+  }
+
   document.querySelectorAll(".cert-prev, .cert-next").forEach(btn => {
     btn.addEventListener("click", () => {
       const targetId = btn.getAttribute("data-target");
